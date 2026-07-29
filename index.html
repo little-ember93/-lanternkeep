@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ef77b3">
+  <meta name="description" content="Lanternkeep — a gentle daily tending app.">
+  <title>Lanternkeep</title>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <div id="app" class="app-shell">
+    <header class="hero card">
+      <div class="brand-row">
+        <div class="lantern-logo" aria-hidden="true">
+          <div class="lantern-handle"></div>
+          <div class="lantern-body">
+            <div class="lantern-glow"></div>
+            <div class="lantern-heart">♥</div>
+          </div>
+        </div>
+
+        <div class="brand-copy">
+          <div class="eyebrow">A gentle daily tending place</div>
+          <h1>Lanternkeep</h1>
+          <p id="heroMessage">Tend what keeps you well. The rest can wait.</p>
+        </div>
+
+        <button id="openSettings" class="icon-button" type="button" aria-label="Edit Lanternkeep">
+          ⚙︎
+        </button>
+      </div>
+
+      <div class="mode-row">
+        <button id="regularMode" class="mode-button active" type="button">Regular day</button>
+        <button id="lowEnergyMode" class="mode-button" type="button">Low-energy day</button>
+      </div>
+
+      <div class="stat-grid" aria-label="Today’s progress">
+        <div class="stat">
+          <span>Done</span>
+          <strong id="doneCount">0</strong>
+        </div>
+        <div class="stat">
+          <span>Today</span>
+          <strong id="todayCount">0</strong>
+        </div>
+        <div class="stat">
+          <span>Essential left</span>
+          <strong id="essentialLeft">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card keep-card">
+        <div class="section-heading">
+          <div>
+            <h2>The keep</h2>
+            <p>A tiny world that settles in as you tend the day.</p>
+          </div>
+          <div id="sceneBadge" class="pill">dollhouse mode</div>
+        </div>
+
+        <div id="world" class="world" aria-label="Lanternkeep living scene">
+          <div class="sky-stars" aria-hidden="true">
+            <span class="star star-1">✦</span>
+            <span class="star star-2">✦</span>
+            <span class="star star-3">✦</span>
+            <span class="star star-4">✦</span>
+          </div>
+
+          <div id="bigLantern" class="big-lantern" aria-hidden="true">
+            <div class="lantern-handle"></div>
+            <div class="lantern-body">
+              <div class="lantern-glow"></div>
+              <div class="lantern-heart">♥</div>
+            </div>
+          </div>
+
+          <div class="pink-tree" aria-hidden="true">
+            <span class="tree-trunk"></span>
+            <span class="tree-leaf leaf-a"></span>
+            <span class="tree-leaf leaf-b"></span>
+            <span class="tree-leaf leaf-c"></span>
+          </div>
+
+          <div id="gratitudeTreeNote" class="tree-note"></div>
+
+          <div class="path" aria-hidden="true"></div>
+          <div id="pawprints" class="pawprints" aria-hidden="true">
+            <span>🐾</span><span>🐾</span><span>🐾</span>
+          </div>
+
+          <div class="pond" aria-label="Mallow’s pond">
+            <div id="pondFill" class="pond-fill"></div>
+            <div class="pond-shine"></div>
+          </div>
+
+          <div id="daisyScene" class="scene-resident daisy-scene" aria-label="Daisy">🐶</div>
+          <div id="mallowScene" class="scene-resident mallow-scene" aria-label="Mallow">🐊</div>
+          <div id="silasScene" class="scene-resident silas-scene" aria-label="Silas">🐈‍⬛</div>
+          <div id="reggieScene" class="scene-resident reggie-scene" aria-label="Reggie">🚨</div>
+
+          <div id="sceneBubble" class="scene-bubble" role="status" aria-live="polite"></div>
+          <div class="world-ground" aria-hidden="true"></div>
+        </div>
+
+        <div class="scene-detail-grid">
+          <article class="scene-detail">
+            <div>
+              <h3>Vanity lantern</h3>
+              <p id="vanityMessage">Waiting for a little glow.</p>
+              <div class="vanity-lights" aria-hidden="true">
+                <span id="faceLight"></span>
+                <span id="skinLight"></span>
+                <span id="hairLight"></span>
+              </div>
+            </div>
+            <div class="detail-art">🪞</div>
+          </article>
+
+          <article class="scene-detail">
+            <div>
+              <h3>Silas corner</h3>
+              <p id="silasMessage">Standards pending.</p>
+              <div id="silasStamp" class="mini-stamp">APPROVED</div>
+            </div>
+            <div class="detail-art">🐈‍⬛</div>
+          </article>
+
+          <article class="scene-detail">
+            <div>
+              <h3>Reggie’s desk</h3>
+              <p id="reggieMessage">No permit issued.</p>
+              <div id="restStamp" class="mini-stamp">REST OK</div>
+            </div>
+            <div class="detail-art">🚨</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card water-card">
+        <div class="section-heading">
+          <div>
+            <h2>Mallow’s water lantern</h2>
+            <p>Tap once for each water moment.</p>
+          </div>
+          <div id="waterBadge" class="pill">0 / 6</div>
+        </div>
+
+        <div id="waterDrops" class="water-drops" aria-label="Water progress"></div>
+
+        <div class="two-buttons">
+          <button id="undoWater" class="secondary-button" type="button">Undo one</button>
+          <button id="addWater" class="primary-button" type="button">Add water</button>
+        </div>
+
+        <p id="waterMessage" class="gentle-note">
+          Mallow has arranged six official droplets.
+        </p>
+      </section>
+
+      <section class="card gratitude-card">
+        <div class="section-heading">
+          <div>
+            <h2>A small gratitude</h2>
+            <p>One true thing is plenty.</p>
+          </div>
+        </div>
+
+        <div class="gratitude-row">
+          <input id="gratitudeInput" type="text" maxlength="160" autocomplete="off" placeholder="Today I’m grateful for…">
+          <button id="saveGratitude" class="primary-button" type="button">Keep it</button>
+        </div>
+
+        <div id="gratitudeSaved" class="saved-note" hidden></div>
+      </section>
+
+      <section class="card tasks-card">
+        <div class="section-heading">
+          <div>
+            <h2>Today’s lanterns</h2>
+            <p>Practical first. Cute second. Both matter.</p>
+          </div>
+          <button id="addTaskQuick" class="text-button" type="button">+ Add task</button>
+        </div>
+
+        <div id="taskSections"></div>
+
+        <div id="emptyRoutine" class="empty-state" hidden>
+          <div class="empty-icon">♡</div>
+          <h3>Your keep is waiting</h3>
+          <p>Add one small thing you would like Lanternkeep to hold for you.</p>
+          <button id="emptyAddTask" class="primary-button" type="button">Add the first task</button>
+        </div>
+      </section>
+
+      <section class="card residents-card">
+        <div class="section-heading">
+          <div>
+            <h2>Residents</h2>
+            <p>Professionally normal household supervision.</p>
+          </div>
+        </div>
+
+        <div class="resident-grid">
+          <article id="daisyCard" class="resident-card">
+            <span class="resident-face">🐶</span>
+            <strong>Daisy</strong>
+            <small>Walk specialist</small>
+            <p class="resident-reaction"></p>
+          </article>
+
+          <article id="mallowCard" class="resident-card">
+            <span class="resident-face">🐊</span>
+            <strong>Mallow</strong>
+            <small>Pond manager</small>
+            <p class="resident-reaction"></p>
+          </article>
+
+          <article id="silasCard" class="resident-card">
+            <span class="resident-face">🐈‍⬛</span>
+            <strong>Silas</strong>
+            <small>Standards office</small>
+            <p class="resident-reaction"></p>
+          </article>
+
+          <article id="reggieCard" class="resident-card">
+            <span class="resident-face">🚨</span>
+            <strong>Reggie</strong>
+            <small>Permit desk</small>
+            <p class="resident-reaction"></p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made together with love by Sweet T and his Little Ember 💗</p>
+      <button id="openPrivacy" type="button">Privacy note</button>
+    </footer>
+  </div>
+
+  <dialog id="welcomeDialog" class="app-dialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-lantern">♥</div>
+      <h2>Welcome to Lanternkeep</h2>
+      <p>
+        Your task names, gratitude, and daily progress stay in this browser on this device.
+        They are not placed in the public GitHub files.
+      </p>
+
+      <div class="choice-stack">
+        <button id="useStarter" class="primary-button" type="button">
+          Use a gentle starter routine
+        </button>
+        <button id="startBlank" class="secondary-button" type="button">
+          Start with a blank keep
+        </button>
+      </div>
+
+      <p class="dialog-fine-print">
+        You can rename, add, hide, or remove everything later.
+      </p>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog" class="app-dialog">
+    <form method="dialog" class="dialog-card settings-dialog-card">
+      <div class="dialog-header">
+        <div>
+          <div class="eyebrow">Stored only on this device</div>
+          <h2>Edit Lanternkeep</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="Close settings">×</button>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-heading">
+          <div>
+            <h3>Your routine</h3>
+            <p>Private task names are saved in this browser, not GitHub.</p>
+          </div>
+          <button id="addTaskSettings" class="text-button" type="button">+ Add</button>
+        </div>
+        <div id="settingsTaskList" class="settings-task-list"></div>
+      </div>
+
+      <div class="settings-section">
+        <h3>Water goal</h3>
+        <label class="field-label" for="waterGoal">Droplets per day</label>
+        <select id="waterGoal">
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+
+      <div class="settings-section privacy-box">
+        <h3>Privacy and backups</h3>
+        <p>
+          Lanternkeep uses local browser storage. This is private from GitHub, but it is not
+          encrypted and it does not automatically move to another phone. Clearing Safari website
+          data can erase it.
+        </p>
+
+        <div class="two-buttons">
+          <button id="exportData" class="secondary-button" type="button">Export backup</button>
+          <label class="secondary-button file-button">
+            Import backup
+            <input id="importData" type="file" accept="application/json">
+          </label>
+        </div>
+      </div>
+
+      <div class="danger-zone">
+        <button id="resetToday" class="secondary-button" type="button">Reset today</button>
+        <button id="eraseEverything" class="danger-button" type="button">Erase all local data</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="taskDialog" class="app-dialog">
+    <form id="taskForm" class="dialog-card">
+      <div class="dialog-header">
+        <div>
+          <div class="eyebrow">Kept on this device</div>
+          <h2 id="taskDialogTitle">Add a lantern</h2>
+        </div>
+        <button id="closeTaskDialog" class="icon-button" type="button" aria-label="Close task editor">×</button>
+      </div>
+
+      <input id="editingTaskId" type="hidden">
+
+      <label class="field-label" for="taskName">Task name</label>
+      <input id="taskName" type="text" maxlength="80" autocomplete="off" required placeholder="A small thing to tend">
+
+      <div class="form-grid">
+        <div>
+          <label class="field-label" for="taskSection">Time of day</label>
+          <select id="taskSection">
+            <option value="morning">Morning</option>
+            <option value="afternoon">Afternoon</option>
+            <option value="evening">Evening</option>
+            <option value="bedtime">Bedtime</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="field-label" for="taskType">Kind</label>
+          <select id="taskType">
+            <option value="essential">Essential</option>
+            <option value="daily">Daily</option>
+            <option value="bonus">Bonus</option>
+          </select>
+        </div>
+      </div>
+
+      <label class="field-label" for="taskResident">Resident reaction</label>
+      <select id="taskResident">
+        <option value="reggie">Reggie</option>
+        <option value="silas">Silas</option>
+        <option value="daisy">Daisy</option>
+        <option value="mallow">Mallow</option>
+      </select>
+
+      <div class="two-buttons">
+        <button id="deleteTask" class="danger-button" type="button" hidden>Delete task</button>
+        <button class="primary-button" type="submit">Save task</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="privacyDialog" class="app-dialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-header">
+        <h2>Lanternkeep privacy</h2>
+        <button class="icon-button" value="cancel" aria-label="Close privacy note">×</button>
+      </div>
+
+      <p><strong>Public:</strong> the generic app code and artwork uploaded to GitHub Pages.</p>
+      <p><strong>On this device:</strong> your task names, gratitude, settings, and completion history.</p>
+      <p>
+        That local information is not sent to GitHub. It may still be visible to someone using
+        your unlocked device, and it can be lost if browser data is cleared.
+      </p>
+    </form>
+  </dialog>
+
+  <template id="taskSectionTemplate">
+    <section class="time-section">
+      <div class="time-heading">
+        <div>
+          <h3></h3>
+          <p></p>
+        </div>
+        <div class="pill section-count"></div>
+      </div>
+      <div class="task-list"></div>
+    </section>
+  </template>
+
+  <template id="taskTemplate">
+    <label class="task-row">
+      <input type="checkbox">
+      <span class="custom-check" aria-hidden="true"></span>
+      <span class="task-copy">
+        <strong class="task-name"></strong>
+        <small class="task-kind"></small>
+      </span>
+      <button class="task-edit-button" type="button" aria-label="Edit task">•••</button>
+    </label>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
