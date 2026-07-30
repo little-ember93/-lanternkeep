@@ -28,6 +28,7 @@
         <div class="brand-copy">
           <div class="eyebrow">A gentle daily tending place</div>
           <h1>Lanternkeep</h1>
+          <p id="dateLine" class="date-line">Today · The keep is waking up</p>
           <p id="heroMessage">Tend what keeps you well. The rest can wait.</p>
         </div>
 
@@ -110,6 +111,35 @@
           <div id="sceneBubble" class="scene-bubble" role="status" aria-live="polite"></div>
           <div class="world-ground" aria-hidden="true"></div>
         </div>
+
+        <section class="resident-strip" aria-label="Resident reactions">
+          <div class="resident-chips">
+            <div id="daisyChip" class="resident-chip" aria-label="Daisy">
+              <span class="resident-chip-face" aria-hidden="true">🐶</span>
+              <small>Daisy</small>
+            </div>
+            <div id="mallowChip" class="resident-chip" aria-label="Mallow">
+              <span class="resident-chip-face" aria-hidden="true">🐊</span>
+              <small>Mallow</small>
+            </div>
+            <div id="silasChip" class="resident-chip" aria-label="Silas">
+              <span class="resident-chip-face" aria-hidden="true">🐈‍⬛</span>
+              <small>Silas</small>
+            </div>
+            <div id="reggieChip" class="resident-chip" aria-label="Reggie">
+              <span class="resident-chip-face" aria-hidden="true">🚨</span>
+              <small>Reggie</small>
+            </div>
+          </div>
+
+          <div id="residentReactionBar" class="resident-reaction-bar" role="status" aria-live="polite">
+            <span id="residentReactionFace" class="resident-reaction-face" aria-hidden="true">💗</span>
+            <div>
+              <strong id="residentReactionName">The residents</strong>
+              <p id="residentReactionText">Everyone is keeping gentle watch.</p>
+            </div>
+          </div>
+        </section>
 
         <div class="scene-detail-grid">
           <article class="scene-detail">
@@ -201,44 +231,6 @@
         </div>
       </section>
 
-      <section class="card residents-card">
-        <div class="section-heading">
-          <div>
-            <h2>Residents</h2>
-            <p>Professionally normal household supervision.</p>
-          </div>
-        </div>
-
-        <div class="resident-grid">
-          <article id="daisyCard" class="resident-card">
-            <span class="resident-face">🐶</span>
-            <strong>Daisy</strong>
-            <small>Walk specialist</small>
-            <p class="resident-reaction"></p>
-          </article>
-
-          <article id="mallowCard" class="resident-card">
-            <span class="resident-face">🐊</span>
-            <strong>Mallow</strong>
-            <small>Pond manager</small>
-            <p class="resident-reaction"></p>
-          </article>
-
-          <article id="silasCard" class="resident-card">
-            <span class="resident-face">🐈‍⬛</span>
-            <strong>Silas</strong>
-            <small>Standards office</small>
-            <p class="resident-reaction"></p>
-          </article>
-
-          <article id="reggieCard" class="resident-card">
-            <span class="resident-face">🚨</span>
-            <strong>Reggie</strong>
-            <small>Permit desk</small>
-            <p class="resident-reaction"></p>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer>

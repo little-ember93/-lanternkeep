@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "lanternkeep-shell-v1";
+const CACHE_NAME = "lanternkeep-shell-v1-1";
 const APP_SHELL = [
   "./",
   "./index.html",

@@ -3,7 +3,7 @@
   "use strict";
 
   const STORAGE_KEY = "lanternkeep.v1";
-  const APP_VERSION = 1;
+  const APP_VERSION = 2;
 
   const SECTION_INFO = {
     morning: {
@@ -44,6 +44,7 @@
   const state = loadState();
 
   const els = {
+    dateLine: byId("dateLine"),
     heroMessage: byId("heroMessage"),
     heroLantern: document.querySelector(".lantern-logo"),
     regularMode: byId("regularMode"),
@@ -87,10 +88,13 @@
     taskSections: byId("taskSections"),
     emptyRoutine: byId("emptyRoutine"),
 
-    daisyCard: byId("daisyCard"),
-    mallowCard: byId("mallowCard"),
-    silasCard: byId("silasCard"),
-    reggieCard: byId("reggieCard"),
+    daisyChip: byId("daisyChip"),
+    mallowChip: byId("mallowChip"),
+    silasChip: byId("silasChip"),
+    reggieChip: byId("reggieChip"),
+    residentReactionFace: byId("residentReactionFace"),
+    residentReactionName: byId("residentReactionName"),
+    residentReactionText: byId("residentReactionText"),
 
     welcomeDialog: byId("welcomeDialog"),
     useStarter: byId("useStarter"),
@@ -212,21 +216,32 @@
         render();
       }
     });
+
+    window.setInterval(() => {
+      const changedDay = ensureToday();
+      if (changedDay) {
+        render();
+      } else {
+        renderDateLine();
+      }
+    }, 60000);
   }
 
   function setLowEnergy(value) {
+    acknowledgeFreshDay();
     state.today.lowEnergy = value;
     saveState();
-    showSceneMessage(
+    reactResident(
+      "reggie",
       value
         ? "Low-energy protection is active. Bonus lanterns have stepped aside."
-        : "Regular day restored. Bonus lanterns are visible again.",
-      "reggie"
+        : "Regular day restored. Bonus lanterns are visible again."
     );
     render();
   }
 
   function changeWater(amount) {
+    acknowledgeFreshDay();
     const before = state.today.water;
     state.today.water = clamp(
       state.today.water + amount,
@@ -246,6 +261,7 @@
   }
 
   function saveGratitude() {
+    acknowledgeFreshDay();
     const value = els.gratitudeInput.value.trim();
 
     if (!value) {
@@ -269,6 +285,7 @@
   function render() {
     ensureToday();
     renderModes();
+    renderDateLine();
     renderProgress();
     renderWater();
     renderGratitude();
@@ -285,6 +302,30 @@
     els.sceneBadge.textContent = low ? "protected mode" : "dollhouse mode";
   }
 
+  function renderDateLine() {
+    const now = new Date();
+    const hour = now.getHours();
+    const daypart =
+      hour < 12 ? "morning" :
+      hour < 17 ? "afternoon" :
+      hour < 21 ? "evening" :
+      "bedtime";
+
+    const date = new Intl.DateTimeFormat(undefined, {
+      weekday: "long",
+      month: "long",
+      day: "numeric"
+    }).format(now);
+
+    els.dateLine.textContent = `${date} · Good ${daypart}`;
+  }
+
+  function acknowledgeFreshDay() {
+    if (state.today.freshGreeting) {
+      state.today.freshGreeting = false;
+    }
+  }
+
   function renderProgress() {
     const active = activeTasks();
     const done = active.filter(isDone).length;
@@ -296,7 +337,9 @@
     els.todayCount.textContent = String(active.length);
     els.essentialLeft.textContent = String(essentialLeft);
 
-    if (percentage === 0) {
+    if (state.today.freshGreeting) {
+      els.heroMessage.textContent = "A new day has arrived. Nothing is overdue.";
+    } else if (percentage === 0) {
       els.heroMessage.textContent = state.today.lowEnergy
         ? "Only the gentlest version of today is required."
         : "Tend what keeps you well. The rest can wait.";
@@ -449,6 +492,7 @@
   }
 
   function setTaskDone(task, done) {
+    acknowledgeFreshDay();
     if (task.special === "gratitude" && done && !state.today.gratitude) {
       els.gratitudeInput.focus();
       els.gratitudeSaved.hidden = false;
@@ -536,40 +580,55 @@
   }
 
   function renderResidents() {
-    const cards = {
-      daisy: els.daisyCard,
-      mallow: els.mallowCard,
-      silas: els.silasCard,
-      reggie: els.reggieCard
+    const residents = {
+      daisy: { chip: els.daisyChip, face: "🐶", label: "Daisy" },
+      mallow: { chip: els.mallowChip, face: "🐊", label: "Mallow" },
+      silas: { chip: els.silasChip, face: "🐈‍⬛", label: "Silas" },
+      reggie: { chip: els.reggieChip, face: "🚨", label: "Reggie" }
     };
 
-    Object.values(cards).forEach((card) => {
-      card.classList.remove("react");
+    Object.values(residents).forEach(({ chip }) => {
+      chip?.classList.remove("active");
     });
+
+    const reaction = state.today.lastReaction;
+    const resident = reaction ? residents[reaction.resident] : null;
+
+    if (!reaction || !resident) {
+      els.residentReactionFace.textContent = "💗";
+      els.residentReactionName.textContent = "The residents";
+      els.residentReactionText.textContent = "Everyone is keeping gentle watch.";
+      return;
+    }
+
+    resident.chip?.classList.add("active");
+    els.residentReactionFace.textContent = resident.face;
+    els.residentReactionName.textContent = resident.label;
+    els.residentReactionText.textContent = reaction.message;
   }
 
   function reactResident(name, message) {
+    acknowledgeFreshDay();
+    state.today.lastReaction = { resident: name, message };
+    saveState();
+    renderResidents();
+
     const scene = byId(`${name}Scene`);
-    const card = byId(`${name}Card`);
+    const chip = byId(`${name}Chip`);
 
     scene?.classList.remove("react");
-    card?.classList.remove("react");
+    chip?.classList.remove("react");
 
     requestAnimationFrame(() => {
       scene?.classList.add("react");
-      card?.classList.add("react");
+      chip?.classList.add("react");
     });
 
-    const reaction = card?.querySelector(".resident-reaction");
-    if (reaction) {
-      reaction.textContent = `“${message}”`;
-    }
-
-    showSceneMessage(message, name);
+    showSceneMessage(message);
 
     window.setTimeout(() => {
       scene?.classList.remove("react");
-      card?.classList.remove("react");
+      chip?.classList.remove("react");
     }, 1300);
   }
 
@@ -830,6 +889,15 @@
       lowEnergy: Boolean(today?.lowEnergy),
       water: Math.max(0, Number(today?.water || 0)),
       gratitude: String(today?.gratitude || "").slice(0, 160),
+      freshGreeting: today?.freshGreeting !== false,
+      lastReaction:
+        today?.lastReaction &&
+        ["daisy", "mallow", "silas", "reggie"].includes(today.lastReaction.resident)
+          ? {
+              resident: today.lastReaction.resident,
+              message: String(today.lastReaction.message || "").slice(0, 180)
+            }
+          : null,
       done: {}
     };
 
@@ -849,9 +917,12 @@
   function ensureToday() {
     const key = localDateKey();
 
+    let changedDay = false;
+
     if (!state.today || state.today.date !== key) {
       state.today = freshToday();
       saveState();
+      changedDay = true;
     }
 
     state.today.water = clamp(
@@ -859,6 +930,8 @@
       0,
       state.settings.waterGoal
     );
+
+    return changedDay;
   }
 
   function freshToday() {
@@ -867,6 +940,8 @@
       lowEnergy: false,
       water: 0,
       gratitude: "",
+      freshGreeting: true,
+      lastReaction: null,
       done: {}
     };
   }

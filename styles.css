@@ -117,6 +117,17 @@ h3 {
   color: var(--muted);
 }
 
+.brand-copy .date-line {
+  margin-top: 5px;
+  color: var(--pink-deep);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.brand-copy .date-line + #heroMessage {
+  margin-top: 3px;
+}
+
 .icon-button {
   display: grid;
   width: 44px;
@@ -539,6 +550,85 @@ h3 {
   transform: translate(-50%, 0);
 }
 
+.resident-strip {
+  margin-top: 10px;
+}
+
+.resident-chips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.resident-chip {
+  display: grid;
+  min-width: 0;
+  min-height: 66px;
+  place-items: center;
+  padding: 7px 4px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff8fc;
+  color: var(--muted);
+  text-align: center;
+  transition: 220ms ease;
+}
+
+.resident-chip.active {
+  border-color: var(--pink);
+  background: var(--pink-soft);
+  color: var(--ink);
+}
+
+.resident-chip-face {
+  display: block;
+  font-size: 29px;
+  line-height: 1;
+  transform-origin: center;
+}
+
+.resident-chip small {
+  display: block;
+  overflow: hidden;
+  max-width: 100%;
+  margin-top: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resident-chip.react .resident-chip-face {
+  animation: happy-hop 0.5s ease-in-out 2 alternate;
+}
+
+.resident-reaction-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 66px;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: #fff;
+}
+
+.resident-reaction-face {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--pink-soft);
+  font-size: 25px;
+}
+
+.resident-reaction-bar p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
 .scene-detail-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -781,52 +871,6 @@ select {
   font-size: 2rem;
 }
 
-.resident-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 9px;
-}
-
-.resident-card {
-  min-height: 140px;
-  padding: 11px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: #fff8fc;
-  text-align: center;
-}
-
-.resident-face {
-  display: block;
-  font-size: 40px;
-  line-height: 1;
-  transform-origin: center;
-}
-
-.resident-card strong,
-.resident-card small {
-  display: block;
-}
-
-.resident-card strong {
-  margin-top: 7px;
-}
-
-.resident-card small {
-  margin-top: 2px;
-  color: var(--muted);
-}
-
-.resident-reaction {
-  min-height: 2.6em;
-  margin-top: 7px;
-  color: var(--muted);
-  font-size: 0.76rem;
-}
-
-.resident-card.react .resident-face {
-  animation: happy-hop 0.5s ease-in-out 2 alternate;
-}
 
 footer {
   padding: 4px 8px 16px;
@@ -1011,9 +1055,6 @@ footer button {
     grid-template-columns: 1fr;
   }
 
-  .resident-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 
   .gratitude-row,
   .form-grid {

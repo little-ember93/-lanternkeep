@@ -19,3 +19,12 @@ Local browser storage is not encrypted. Anyone using an unlocked device may be a
 5. Wait for GitHub to show the published address.
 
 The app uses only HTML, CSS, and JavaScript. There are no paid services and no outside tracking libraries.
+
+
+## Version 1.1
+
+- Moves resident reactions into a compact row directly beneath the living scene.
+- Keeps the latest resident message visible for the rest of the day.
+- Adds a gentle date and daypart line.
+- Adds a fresh-day greeting with no countdown, streak, or overdue language.
+- Removes the larger resident profile section for now.
