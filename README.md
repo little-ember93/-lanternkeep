@@ -49,3 +49,8 @@ This version includes custom Pink Heart Land resident artwork files used in the 
 ## Lanternkeep 1.3.1
 
 Fixed the compact resident row and persistent reaction badge so they use the illustrated portrait assets. Also repaired and refreshed the offline cache list.
+
+
+## Lanternkeep 1.3.2 — Home Screen repair
+
+This update adds compact, app-sized resident art, hard sizing limits for the compact resident row, versioned CSS and JavaScript files, and a new service worker so iPhone Home Screen installations cannot combine stale and current layout files.

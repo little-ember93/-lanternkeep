@@ -10,7 +10,65 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   <link rel="icon" href="./icon-192.png">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles-v132.css">
+
+  <style id="resident-critical-v132">
+    .resident-chips {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 7px !important;
+    }
+    .resident-chip {
+      display: grid !important;
+      min-width: 0 !important;
+      min-height: 72px !important;
+      height: auto !important;
+      place-items: center !important;
+      overflow: hidden !important;
+      padding: 7px 3px !important;
+    }
+    .resident-chip-face {
+      display: grid !important;
+      width: 48px !important;
+      height: 48px !important;
+      min-width: 48px !important;
+      min-height: 48px !important;
+      max-width: 48px !important;
+      max-height: 48px !important;
+      place-items: center !important;
+      overflow: hidden !important;
+    }
+    .resident-chip-image {
+      display: block !important;
+      width: 46px !important;
+      height: 46px !important;
+      min-width: 0 !important;
+      max-width: 46px !important;
+      max-height: 46px !important;
+      object-fit: contain !important;
+    }
+    .resident-reaction-face {
+      width: 48px !important;
+      height: 48px !important;
+      min-width: 48px !important;
+      max-width: 48px !important;
+      overflow: hidden !important;
+    }
+    .resident-reaction-image {
+      display: block !important;
+      width: 45px !important;
+      height: 45px !important;
+      max-width: 45px !important;
+      max-height: 45px !important;
+      object-fit: contain !important;
+    }
+    .resident-scene-image {
+      display: block !important;
+      object-fit: contain !important;
+      max-width: none !important;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -104,10 +162,10 @@
             <div class="pond-shine"></div>
           </div>
 
-          <img id="daisyScene" class="scene-resident daisy-scene resident-image resident-scene-image" src="./resident_daisy_idle.png" alt="Daisy">
-          <img id="mallowScene" class="scene-resident mallow-scene resident-image resident-scene-image" src="./resident_mallow_idle.png" alt="Mallow">
-          <img id="silasScene" class="scene-resident silas-scene resident-image resident-scene-image" src="./resident_silas_idle.png" alt="Silas">
-          <img id="reggieScene" class="scene-resident reggie-scene resident-image resident-scene-image" src="./resident_reggie_idle.png" alt="Reggie">
+          <img id="daisyScene" class="scene-resident daisy-scene resident-image resident-scene-image" src="./resident_daisy_idle_v132.png" alt="Daisy">
+          <img id="mallowScene" class="scene-resident mallow-scene resident-image resident-scene-image" src="./resident_mallow_idle_v132.png" alt="Mallow">
+          <img id="silasScene" class="scene-resident silas-scene resident-image resident-scene-image" src="./resident_silas_idle_v132.png" alt="Silas">
+          <img id="reggieScene" class="scene-resident reggie-scene resident-image resident-scene-image" src="./resident_reggie_idle_v132.png" alt="Reggie">
 
           <div id="sceneBubble" class="scene-bubble" role="status" aria-live="polite"></div>
           <div class="world-ground" aria-hidden="true"></div>
@@ -116,19 +174,19 @@
         <section class="resident-strip" aria-label="Resident reactions">
           <div class="resident-chips">
             <div id="daisyChip" class="resident-chip" aria-label="Daisy">
-              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_daisy_icon.png" alt=""></span>
+              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_daisy_icon_v132.png" alt=""></span>
               <small>Daisy</small>
             </div>
             <div id="mallowChip" class="resident-chip" aria-label="Mallow">
-              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_mallow_icon.png" alt=""></span>
+              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_mallow_icon_v132.png" alt=""></span>
               <small>Mallow</small>
             </div>
             <div id="silasChip" class="resident-chip" aria-label="Silas">
-              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_silas_icon.png" alt=""></span>
+              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_silas_icon_v132.png" alt=""></span>
               <small>Silas</small>
             </div>
             <div id="reggieChip" class="resident-chip" aria-label="Reggie">
-              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_reggie_icon.png" alt=""></span>
+              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_reggie_icon_v132.png" alt=""></span>
               <small>Reggie</small>
             </div>
           </div>
@@ -136,7 +194,7 @@
           <div id="residentReactionBar" class="resident-reaction-bar" role="status" aria-live="polite">
             <span id="residentReactionFace" class="resident-reaction-face" aria-hidden="true">
               <span id="residentReactionFallback">💗</span>
-              <img id="residentReactionImage" class="resident-reaction-image" src="./resident_mallow_icon.png" alt="" hidden>
+              <img id="residentReactionImage" class="resident-reaction-image" src="./resident_mallow_icon_v132.png" alt="" hidden>
             </span>
             <div>
               <strong id="residentReactionName">The residents</strong>
@@ -428,6 +486,6 @@
     </label>
   </template>
 
-  <script src="./app.js"></script>
+  <script src="./app-v132.js"></script>
 </body>
 </html>
