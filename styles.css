@@ -644,10 +644,20 @@ h3 {
 }
 
 .resident-chip-face {
-  display: block;
-  font-size: 29px;
+  display: grid;
+  width: 45px;
+  height: 45px;
+  place-items: center;
   line-height: 1;
   transform-origin: center;
+}
+
+.resident-chip-image {
+  display: block;
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 5px rgba(84, 53, 72, 0.12));
 }
 
 .resident-chip small {
@@ -677,13 +687,22 @@ h3 {
 
 .resident-reaction-face {
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   flex: 0 0 auto;
   place-items: center;
-  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 15px;
   background: var(--pink-soft);
   font-size: 25px;
+}
+
+.resident-reaction-image {
+  display: block;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
 }
 
 .resident-reaction-bar p {

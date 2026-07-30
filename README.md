@@ -44,3 +44,8 @@ The app uses only HTML, CSS, and JavaScript. There are no paid services and no o
 ## Illustrated residents
 
 This version includes custom Pink Heart Land resident artwork files used in the main keep scene and compact resident row.
+
+
+## Lanternkeep 1.3.1
+
+Fixed the compact resident row and persistent reaction badge so they use the illustrated portrait assets. Also repaired and refreshed the offline cache list.

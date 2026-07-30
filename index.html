@@ -116,25 +116,28 @@
         <section class="resident-strip" aria-label="Resident reactions">
           <div class="resident-chips">
             <div id="daisyChip" class="resident-chip" aria-label="Daisy">
-              <span class="resident-chip-face" aria-hidden="true">🐶</span>
+              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_daisy_icon.png" alt=""></span>
               <small>Daisy</small>
             </div>
             <div id="mallowChip" class="resident-chip" aria-label="Mallow">
-              <span class="resident-chip-face" aria-hidden="true">🐊</span>
+              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_mallow_icon.png" alt=""></span>
               <small>Mallow</small>
             </div>
             <div id="silasChip" class="resident-chip" aria-label="Silas">
-              <span class="resident-chip-face" aria-hidden="true">🐈‍⬛</span>
+              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_silas_icon.png" alt=""></span>
               <small>Silas</small>
             </div>
             <div id="reggieChip" class="resident-chip" aria-label="Reggie">
-              <span class="resident-chip-face" aria-hidden="true">🚨</span>
+              <span class="resident-chip-face" aria-hidden="true"><img class="resident-chip-image" src="./resident_reggie_icon.png" alt=""></span>
               <small>Reggie</small>
             </div>
           </div>
 
           <div id="residentReactionBar" class="resident-reaction-bar" role="status" aria-live="polite">
-            <span id="residentReactionFace" class="resident-reaction-face" aria-hidden="true">💗</span>
+            <span id="residentReactionFace" class="resident-reaction-face" aria-hidden="true">
+              <span id="residentReactionFallback">💗</span>
+              <img id="residentReactionImage" class="resident-reaction-image" src="./resident_mallow_icon.png" alt="" hidden>
+            </span>
             <div>
               <strong id="residentReactionName">The residents</strong>
               <p id="residentReactionText">Everyone is keeping gentle watch.</p>

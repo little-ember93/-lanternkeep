@@ -1,4 +1,5 @@
-const CACHE_NAME = "lanternkeep-shell-v1-2";
+const CACHE_NAME = "lanternkeep-shell-v1-3-1";
+
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -9,7 +10,7 @@ const APP_SHELL = [
   "./manifest.webmanifest",
   "./icon-192.png",
   "./icon-512.png",
-  "./apple-touch-icon.png"
+  "./apple-touch-icon.png",
   "./resident_daisy_icon.png",
   "./resident_silas_icon.png",
   "./resident_mallow_icon.png",
@@ -17,7 +18,7 @@ const APP_SHELL = [
   "./resident_daisy_idle.png",
   "./resident_silas_idle.png",
   "./resident_mallow_idle.png",
-  "./resident_reggie_idle.png",
+  "./resident_reggie_idle.png"
 ];
 
 self.addEventListener("install", (event) => {

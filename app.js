@@ -95,6 +95,8 @@
     silasChip: byId("silasChip"),
     reggieChip: byId("reggieChip"),
     residentReactionFace: byId("residentReactionFace"),
+    residentReactionFallback: byId("residentReactionFallback"),
+    residentReactionImage: byId("residentReactionImage"),
     residentReactionName: byId("residentReactionName"),
     residentReactionText: byId("residentReactionText"),
 
@@ -593,10 +595,26 @@
 
   function renderResidents() {
     const residents = {
-      daisy: { chip: els.daisyChip, face: "🐶", label: "Daisy" },
-      mallow: { chip: els.mallowChip, face: "🐊", label: "Mallow" },
-      silas: { chip: els.silasChip, face: "🐈‍⬛", label: "Silas" },
-      reggie: { chip: els.reggieChip, face: "🚨", label: "Reggie" }
+      daisy: {
+        chip: els.daisyChip,
+        image: "./resident_daisy_icon.png",
+        label: "Daisy"
+      },
+      mallow: {
+        chip: els.mallowChip,
+        image: "./resident_mallow_icon.png",
+        label: "Mallow"
+      },
+      silas: {
+        chip: els.silasChip,
+        image: "./resident_silas_icon.png",
+        label: "Silas"
+      },
+      reggie: {
+        chip: els.reggieChip,
+        image: "./resident_reggie_icon.png",
+        label: "Reggie"
+      }
     };
 
     Object.values(residents).forEach(({ chip }) => {
@@ -607,14 +625,17 @@
     const resident = reaction ? residents[reaction.resident] : null;
 
     if (!reaction || !resident) {
-      els.residentReactionFace.textContent = "💗";
+      els.residentReactionFallback.hidden = false;
+      els.residentReactionImage.hidden = true;
       els.residentReactionName.textContent = "The residents";
       els.residentReactionText.textContent = "Everyone is keeping gentle watch.";
       return;
     }
 
     resident.chip?.classList.add("active");
-    els.residentReactionFace.textContent = resident.face;
+    els.residentReactionFallback.hidden = true;
+    els.residentReactionImage.src = resident.image;
+    els.residentReactionImage.hidden = false;
     els.residentReactionName.textContent = resident.label;
     els.residentReactionText.textContent = reaction.message;
   }
