@@ -39,3 +39,8 @@ The app uses only HTML, CSS, and JavaScript. There are no paid services and no o
 - Missing days create no blank leaf, broken chain, warning, or penalty.
 - Includes Grove history in the existing local backup/export data.
 - Adds pathways to the Grove from the small tree and gratitude section.
+
+
+## Illustrated residents
+
+This version includes custom Pink Heart Land resident artwork files used in the main keep scene and compact resident row.

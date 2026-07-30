@@ -494,6 +494,69 @@ h3 {
   user-select: none;
 }
 
+.resident-image {
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(84, 53, 72, 0.14));
+}
+
+.resident-scene-image {
+  width: auto;
+  height: auto;
+  max-width: none;
+}
+
+.daisy-scene {
+  left: 18px;
+  bottom: 48px;
+  width: 112px;
+  height: 112px;
+}
+
+.mallow-scene {
+  right: 34px;
+  bottom: 35px;
+  width: 118px;
+  height: 118px;
+}
+
+.silas-scene {
+  left: 130px;
+  bottom: 48px;
+  width: 108px;
+  height: 108px;
+}
+
+.reggie-scene {
+  top: 42px;
+  right: 16px;
+  width: 118px;
+  height: 180px;
+}
+
+.resident-face-image-wrap {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  margin: 0 auto;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fffafd, #fff3f8);
+  border: 1px solid #f0d5e2;
+  overflow: hidden;
+}
+
+.resident-face-image {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  display: block;
+}
+
+.resident-card.react .resident-face-image {
+  animation: happy-hop 0.5s ease-in-out 2 alternate;
+}
+
 .daisy-scene {
   bottom: 61px;
   left: 34px;
@@ -1078,11 +1141,41 @@ footer button {
   }
 
   .world {
-    min-height: 310px;
+    min-height: 324px;
+  }
+
+  .daisy-scene {
+    left: 10px;
+    width: 100px;
+    height: 100px;
   }
 
   .silas-scene {
-    left: 130px;
+    left: 108px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .mallow-scene {
+    right: 26px;
+    width: 106px;
+    height: 106px;
+  }
+
+  .reggie-scene {
+    right: 8px;
+    width: 106px;
+    height: 162px;
+  }
+
+  .resident-face-image-wrap {
+    width: 60px;
+    height: 60px;
+  }
+
+  .resident-face-image {
+    width: 50px;
+    height: 50px;
   }
 }
 
