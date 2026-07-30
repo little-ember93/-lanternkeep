@@ -84,12 +84,13 @@
             </div>
           </div>
 
-          <div class="pink-tree" aria-hidden="true">
-            <span class="tree-trunk"></span>
-            <span class="tree-leaf leaf-a"></span>
-            <span class="tree-leaf leaf-b"></span>
-            <span class="tree-leaf leaf-c"></span>
-          </div>
+          <button id="openGroveTree" class="pink-tree gratitude-tree-link" type="button" aria-label="Walk to the Gratitude Grove">
+            <span class="tree-trunk" aria-hidden="true"></span>
+            <span class="tree-leaf leaf-a" aria-hidden="true"></span>
+            <span class="tree-leaf leaf-b" aria-hidden="true"></span>
+            <span class="tree-leaf leaf-c" aria-hidden="true"></span>
+            <span class="tree-path-sign" aria-hidden="true">Grove</span>
+          </button>
 
           <div id="gratitudeTreeNote" class="tree-note"></div>
 
@@ -196,12 +197,13 @@
         </p>
       </section>
 
-      <section class="card gratitude-card">
+      <section id="gratitude" class="card gratitude-card">
         <div class="section-heading">
           <div>
             <h2>A small gratitude</h2>
             <p>One true thing is plenty.</p>
           </div>
+          <span id="gratitudeLeafCount" class="pill">0 leaves</span>
         </div>
 
         <div class="gratitude-row">
@@ -210,6 +212,15 @@
         </div>
 
         <div id="gratitudeSaved" class="saved-note" hidden></div>
+
+        <a id="openGroveLink" class="grove-link-button" href="./grove.html">
+          <span class="grove-link-icon" aria-hidden="true">🌳</span>
+          <span>
+            <strong>Walk to the Gratitude Grove</strong>
+            <small>Visit the leaves you have grown.</small>
+          </span>
+          <span aria-hidden="true">→</span>
+        </a>
       </section>
 
       <section class="card tasks-card">

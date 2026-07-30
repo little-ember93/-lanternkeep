@@ -1096,3 +1096,456 @@ footer button {
     transition-duration: 0.001ms !important;
   }
 }
+
+
+/* Gratitude Grove — Lanternkeep 1.2 */
+.gratitude-tree-link {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gratitude-tree-link:focus-visible {
+  outline: 3px solid rgba(239, 119, 179, 0.38);
+  outline-offset: 5px;
+}
+
+.gratitude-tree-link.has-leaves .tree-leaf {
+  box-shadow: 0 0 12px rgba(239, 119, 179, 0.24);
+}
+
+.tree-path-sign {
+  position: absolute;
+  right: -26px;
+  bottom: 18px;
+  z-index: 3;
+  padding: 2px 5px;
+  border: 1px solid #d9b295;
+  border-radius: 5px;
+  background: #fff0ce;
+  color: #795a49;
+  font-size: 0.58rem;
+  font-weight: 800;
+  transform: rotate(-5deg);
+}
+
+.tree-path-sign::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2px;
+  height: 13px;
+  background: #b68668;
+  transform: translateX(-50%);
+}
+
+.grove-link-button {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  min-height: 58px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: #fff8fc;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.grove-link-button > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+
+.grove-link-button strong,
+.grove-link-button small {
+  display: block;
+}
+
+.grove-link-button small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.grove-link-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--pink-soft);
+  font-size: 23px;
+}
+
+.grove-page {
+  background:
+    radial-gradient(circle at 15% 2%, #ffe5f1 0%, transparent 28%),
+    radial-gradient(circle at 87% 12%, #f0eaff 0%, transparent 25%),
+    linear-gradient(180deg, #fff8fc, #fff4fa);
+}
+
+.grove-shell {
+  width: min(100%, 900px);
+}
+
+.grove-header {
+  background: linear-gradient(180deg, #fffdfd, #fff5fa);
+}
+
+.grove-header-row,
+.grove-title-row,
+.grove-tree-heading {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grove-title-row {
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 17px;
+}
+
+.grove-title-row p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.grove-mark {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  background: var(--pink-soft);
+  font-size: 31px;
+}
+
+.back-to-keep {
+  display: inline-grid;
+  min-height: 44px;
+  place-items: center;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.grove-branch-heading {
+  align-items: flex-start;
+}
+
+.month-branches {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 1px 8px;
+  scrollbar-width: thin;
+}
+
+.month-branch-button {
+  min-width: 104px;
+  min-height: 57px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #fff;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.month-branch-button strong,
+.month-branch-button small {
+  display: block;
+}
+
+.month-branch-button small {
+  margin-top: 2px;
+  color: var(--muted);
+}
+
+.month-branch-button.active {
+  border-color: var(--pink);
+  background: var(--pink-soft);
+}
+
+.grove-tree-heading {
+  margin: 13px 0 9px;
+}
+
+.full-grove-tree {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 23px;
+  background: linear-gradient(180deg, #fff3fa, #fffafe 68%, #fff7fb);
+}
+
+.grove-sky-specks span {
+  position: absolute;
+  z-index: 1;
+  color: #efc45f;
+  opacity: 0.65;
+}
+
+.grove-sky-specks span:nth-child(1) { top: 8%; left: 12%; }
+.grove-sky-specks span:nth-child(2) { top: 13%; right: 13%; }
+.grove-sky-specks span:nth-child(3) { top: 29%; left: 7%; }
+.grove-sky-specks span:nth-child(4) { top: 32%; right: 8%; }
+
+.canopy-cloud {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid #efbdd4;
+  border-radius: 50%;
+  background: #ffd3e5;
+}
+
+.canopy-one { top: 42px; left: 7%; width: 48%; height: 235px; }
+.canopy-two { top: 22px; right: 7%; width: 49%; height: 245px; }
+.canopy-three { top: 92px; left: 27%; width: 48%; height: 220px; }
+
+.great-trunk {
+  position: absolute;
+  bottom: 42px;
+  left: 50%;
+  z-index: 3;
+  width: 36px;
+  height: 245px;
+  border-radius: 22px 22px 9px 9px;
+  background: #b98268;
+  transform: translateX(-50%);
+}
+
+.great-branch {
+  position: absolute;
+  z-index: 3;
+  height: 17px;
+  border-radius: 999px;
+  background: #b98268;
+}
+
+.great-branch-left {
+  left: 23%;
+  bottom: 190px;
+  width: 31%;
+  transform: rotate(25deg);
+}
+
+.great-branch-right {
+  right: 22%;
+  bottom: 173px;
+  width: 31%;
+  transform: rotate(-24deg);
+}
+
+.great-branch-high {
+  left: 41%;
+  bottom: 257px;
+  width: 22%;
+  transform: rotate(-12deg);
+}
+
+.leaf-canopy {
+  position: absolute;
+  top: 53px;
+  right: 7%;
+  left: 7%;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px 6px;
+  align-content: start;
+}
+
+.grove-leaf-button {
+  min-width: 0;
+  min-height: 49px;
+  padding: 5px 3px;
+  border: 1px solid #dfa9c3;
+  border-radius: 65% 35% 62% 38%;
+  background: #fff0f7;
+  color: var(--ink);
+  cursor: pointer;
+  transform: rotate(var(--leaf-turn));
+  transition: 180ms ease;
+}
+
+.grove-leaf-button strong,
+.grove-leaf-button small {
+  display: block;
+  line-height: 1.05;
+}
+
+.grove-leaf-button strong {
+  font-size: 1rem;
+}
+
+.grove-leaf-button small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.66rem;
+}
+
+.grove-leaf-button.active,
+.grove-leaf-button:focus-visible {
+  border-color: var(--pink-deep);
+  background: var(--pink);
+  color: #fff;
+  transform: rotate(var(--leaf-turn)) translateY(-3px) scale(1.04);
+}
+
+.grove-leaf-button.active small {
+  color: #fff;
+}
+
+.grove-leaf-button.today::after {
+  content: "today";
+  display: block;
+  margin-top: 2px;
+  color: inherit;
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.grove-ground {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: 76px;
+  border-top: 1px solid #f0dce7;
+  background: #fff7fb;
+}
+
+.leaf-memory {
+  min-height: 135px;
+  margin-top: 10px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  background: #fff8fc;
+}
+
+.leaf-memory p {
+  margin-top: 7px;
+  color: var(--ink);
+  font-size: 1.02rem;
+}
+
+.grove-empty {
+  padding: 22px 12px 10px;
+  text-align: center;
+}
+
+.grove-empty p {
+  max-width: 430px;
+  margin: 7px auto 14px;
+  color: var(--muted);
+}
+
+.bare-tree {
+  position: relative;
+  width: 150px;
+  height: 180px;
+  margin: 0 auto 8px;
+}
+
+.bare-trunk {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 24px;
+  height: 125px;
+  border-radius: 18px 18px 7px 7px;
+  background: #b98268;
+  transform: translateX(-50%);
+}
+
+.bare-branch {
+  position: absolute;
+  bottom: 92px;
+  width: 78px;
+  height: 12px;
+  border-radius: 999px;
+  background: #b98268;
+}
+
+.branch-left { left: 8px; transform: rotate(28deg); }
+.branch-right { right: 8px; transform: rotate(-28deg); }
+
+.grove-cta {
+  display: inline-grid;
+  min-height: 46px;
+  place-items: center;
+  padding: 9px 14px;
+  text-decoration: none;
+}
+
+.grove-philosophy {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+}
+
+.grove-philosophy p {
+  margin-top: 5px;
+  color: var(--muted);
+}
+
+.grove-philosophy-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--pink-soft);
+  color: var(--pink-deep);
+  font-size: 1.35rem;
+}
+
+.grove-page footer a {
+  display: inline-block;
+  margin-top: 5px;
+  color: var(--pink-deep);
+}
+
+@media (max-width: 480px) {
+  .full-grove-tree {
+    min-height: 500px;
+  }
+
+  .leaf-canopy {
+    top: 52px;
+    right: 5%;
+    left: 5%;
+    gap: 7px 4px;
+  }
+
+  .grove-leaf-button {
+    min-height: 46px;
+  }
+
+  .canopy-one { left: 2%; width: 54%; }
+  .canopy-two { right: 2%; width: 54%; }
+  .canopy-three { left: 24%; width: 53%; }
+}

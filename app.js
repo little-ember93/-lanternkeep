@@ -3,7 +3,7 @@
   "use strict";
 
   const STORAGE_KEY = "lanternkeep.v1";
-  const APP_VERSION = 2;
+  const APP_VERSION = 3;
 
   const SECTION_INFO = {
     morning: {
@@ -84,6 +84,8 @@
     gratitudeInput: byId("gratitudeInput"),
     saveGratitude: byId("saveGratitude"),
     gratitudeSaved: byId("gratitudeSaved"),
+    gratitudeLeafCount: byId("gratitudeLeafCount"),
+    openGroveTree: byId("openGroveTree"),
 
     taskSections: byId("taskSections"),
     emptyRoutine: byId("emptyRoutine"),
@@ -135,6 +137,7 @@
 
   function initialize() {
     ensureToday();
+    saveState();
     bindEvents();
     render();
 
@@ -153,6 +156,9 @@
     els.undoWater.addEventListener("click", () => changeWater(-1));
 
     els.saveGratitude.addEventListener("click", saveGratitude);
+    els.openGroveTree.addEventListener("click", () => {
+      window.location.href = "./grove.html";
+    });
     els.gratitudeInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -271,6 +277,7 @@
     }
 
     state.today.gratitude = value;
+    upsertGratitudeLeaf(state.today.date, value);
 
     const gratitudeTask = state.tasks.find((task) => task.special === "gratitude");
     if (gratitudeTask) {
@@ -419,6 +426,11 @@
 
     els.gratitudeTreeNote.textContent = value;
     els.gratitudeTreeNote.classList.toggle("show", Boolean(value));
+
+    const count = state.gratitudes.length;
+    els.gratitudeLeafCount.textContent =
+      `${count} ${count === 1 ? "leaf" : "leaves"}`;
+    els.openGroveTree.classList.toggle("has-leaves", count > 0);
   }
 
   function renderTasks() {
@@ -823,6 +835,9 @@
       return;
     }
 
+    state.gratitudes = state.gratitudes.filter(
+      (entry) => entry.date !== localDateKey()
+    );
     state.today = freshToday();
     saveState();
     render();
@@ -854,6 +869,25 @@
   }
 
   function normalizeState(input) {
+    const today = normalizeToday(input.today);
+    const gratitudes = normalizeGratitudes(input.gratitudes);
+
+    if (today.gratitude) {
+      const existing = gratitudes.find((entry) => entry.date === today.date);
+      if (existing) {
+        existing.text = today.gratitude;
+      } else {
+        gratitudes.push({
+          id: `gratitude-${today.date}`,
+          date: today.date,
+          text: today.gratitude,
+          savedAt: `${today.date}T12:00:00`
+        });
+      }
+    }
+
+    gratitudes.sort((a, b) => a.date.localeCompare(b.date));
+
     return {
       version: APP_VERSION,
       setupComplete: Boolean(input.setupComplete),
@@ -861,7 +895,8 @@
       settings: {
         waterGoal: clamp(Number(input.settings?.waterGoal || 6), 4, 10)
       },
-      today: normalizeToday(input.today)
+      gratitudes,
+      today
     };
   }
 
@@ -881,6 +916,58 @@
         ? task.sceneRole
         : undefined
     };
+  }
+
+  function normalizeGratitudes(gratitudes) {
+    if (!Array.isArray(gratitudes)) {
+      return [];
+    }
+
+    const byDate = new Map();
+
+    gratitudes.forEach((entry) => {
+      const date = String(entry?.date || "");
+      const text = String(entry?.text || "").trim().slice(0, 160);
+
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !text) {
+        return;
+      }
+
+      byDate.set(date, {
+        id: String(entry?.id || `gratitude-${date}`),
+        date,
+        text,
+        savedAt: String(entry?.savedAt || `${date}T12:00:00`)
+      });
+    });
+
+    return Array.from(byDate.values()).sort(
+      (a, b) => a.date.localeCompare(b.date)
+    );
+  }
+
+  function upsertGratitudeLeaf(date, text) {
+    const cleanText = String(text || "").trim().slice(0, 160);
+    if (!cleanText) {
+      return;
+    }
+
+    const existing = state.gratitudes.find((entry) => entry.date === date);
+
+    if (existing) {
+      existing.text = cleanText;
+      existing.savedAt = new Date().toISOString();
+      return;
+    }
+
+    state.gratitudes.push({
+      id: `gratitude-${date}`,
+      date,
+      text: cleanText,
+      savedAt: new Date().toISOString()
+    });
+
+    state.gratitudes.sort((a, b) => a.date.localeCompare(b.date));
   }
 
   function normalizeToday(today) {

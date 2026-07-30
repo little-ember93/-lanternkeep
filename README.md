@@ -28,3 +28,14 @@ The app uses only HTML, CSS, and JavaScript. There are no paid services and no o
 - Adds a gentle date and daypart line.
 - Adds a fresh-day greeting with no countdown, streak, or overdue language.
 - Removes the larger resident profile section for now.
+
+
+## Version 1.2 — Gratitude Grove
+
+- Adds a separate Gratitude Grove page.
+- Saves one dated gratitude leaf per calendar day.
+- Updating today’s gratitude updates today’s existing leaf instead of creating duplicates.
+- Groups leaves into monthly branches and lets the user tap each leaf to reread it.
+- Missing days create no blank leaf, broken chain, warning, or penalty.
+- Includes Grove history in the existing local backup/export data.
+- Adds pathways to the Grove from the small tree and gratitude section.

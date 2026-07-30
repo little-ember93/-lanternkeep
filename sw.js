@@ -1,10 +1,11 @@
-
-const CACHE_NAME = "lanternkeep-shell-v1-1";
+const CACHE_NAME = "lanternkeep-shell-v1-2";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./grove.html",
   "./styles.css",
   "./app.js",
+  "./grove.js",
   "./manifest.webmanifest",
   "./icon-192.png",
   "./icon-512.png",
@@ -37,16 +38,12 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) {
-        return cached;
-      }
-
-      return fetch(event.request).then((response) => {
+    fetch(event.request)
+      .then((response) => {
         const copy = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
         return response;
-      });
-    })
+      })
+      .catch(() => caches.match(event.request))
   );
 });

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ef77b3">
+  <meta name="description" content="The Gratitude Grove — Lanternkeep's gentle memory tree.">
+  <title>Gratitude Grove · Lanternkeep</title>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="grove-page">
+  <div class="app-shell grove-shell">
+    <header class="grove-header card">
+      <div class="grove-header-row">
+        <a class="back-to-keep" href="./index.html">← Back to the keep</a>
+        <span id="groveTotalBadge" class="pill">0 leaves</span>
+      </div>
+
+      <div class="grove-title-row">
+        <div class="grove-mark" aria-hidden="true">🌳</div>
+        <div>
+          <div class="eyebrow">A quiet archive of things you noticed</div>
+          <h1>The Gratitude Grove</h1>
+          <p>No chains to break. The tree grows whenever something is kept.</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card grove-card">
+        <div class="section-heading grove-branch-heading">
+          <div>
+            <h2>Monthly branches</h2>
+            <p>Choose a branch to visit its leaves.</p>
+          </div>
+          <span id="branchCountBadge" class="pill">0 branches</span>
+        </div>
+
+        <div id="monthBranches" class="month-branches" aria-label="Gratitude months"></div>
+
+        <div id="groveEmpty" class="grove-empty" hidden>
+          <div class="bare-tree" aria-hidden="true">
+            <span class="bare-trunk"></span>
+            <span class="bare-branch branch-left"></span>
+            <span class="bare-branch branch-right"></span>
+          </div>
+          <h2>The tree is ready.</h2>
+          <p>Your first gratitude will grow the first leaf. Nothing else is required.</p>
+          <a class="primary-button grove-cta" href="./index.html#gratitude">Grow today’s leaf</a>
+        </div>
+
+        <div id="groveContent" hidden>
+          <div class="grove-tree-heading">
+            <div>
+              <div class="eyebrow">Selected branch</div>
+              <h2 id="selectedMonthTitle">This month</h2>
+            </div>
+            <span id="selectedMonthCount" class="pill">0 leaves</span>
+          </div>
+
+          <div class="full-grove-tree" aria-label="A tree holding dated gratitude leaves">
+            <div class="grove-sky-specks" aria-hidden="true">
+              <span>✦</span><span>✦</span><span>✦</span><span>✦</span>
+            </div>
+            <div class="canopy-cloud canopy-one" aria-hidden="true"></div>
+            <div class="canopy-cloud canopy-two" aria-hidden="true"></div>
+            <div class="canopy-cloud canopy-three" aria-hidden="true"></div>
+            <div class="great-trunk" aria-hidden="true"></div>
+            <div class="great-branch great-branch-left" aria-hidden="true"></div>
+            <div class="great-branch great-branch-right" aria-hidden="true"></div>
+            <div class="great-branch great-branch-high" aria-hidden="true"></div>
+            <div id="leafCanopy" class="leaf-canopy"></div>
+            <div class="grove-ground" aria-hidden="true"></div>
+          </div>
+
+          <article id="leafMemory" class="leaf-memory" aria-live="polite">
+            <div id="memoryDate" class="eyebrow">Tap a leaf</div>
+            <h2 id="memoryTitle">Every leaf holds one true thing.</h2>
+            <p id="memoryText">There are no empty leaves for days you missed.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card grove-philosophy">
+        <div class="grove-philosophy-icon" aria-hidden="true">♡</div>
+        <div>
+          <h2>Progress without punishment</h2>
+          <p>A day without a gratitude leaves no scar and breaks no chain. The next leaf simply grows whenever you return.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made together with love by Sweet T and his Little Ember 💗</p>
+      <a href="./index.html">Return to Lanternkeep</a>
+    </footer>
+  </div>
+
+  <script src="./grove.js"></script>
+</body>
+</html>
