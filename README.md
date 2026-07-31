@@ -54,3 +54,19 @@ Fixed the compact resident row and persistent reaction badge so they use the ill
 ## Lanternkeep 1.3.2 — Home Screen repair
 
 This update adds compact, app-sized resident art, hard sizing limits for the compact resident row, versioned CSS and JavaScript files, and a new service worker so iPhone Home Screen installations cannot combine stale and current layout files.
+
+## Lanternkeep 1.4.0 — The Living World
+
+- Replaces the placeholder keep with the illustrated Keep-and-Pond artwork.
+- Changes the home scene automatically for morning, afternoon, evening, and night.
+- Adds four illustrated Gratitude Grove growth stages based on the total number of saved gratitude leaves.
+- Keeps dated gratitude leaves tappable over the illustrated tree and preserves the monthly archive.
+- Preserves all existing on-device tasks, gratitude entries, settings, and daily progress under the same local storage key.
+- Adds a refreshed offline cache so the new artwork is available from the iPhone Home Screen after the update loads.
+
+### Grove stages
+
+- Baby grove: 0–4 leaves
+- Young grove: 5–14 leaves
+- Flourishing grove: 15–29 leaves
+- Grand grove: 30 or more leaves

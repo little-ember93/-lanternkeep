@@ -10,9 +10,9 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   <link rel="icon" href="./icon-192.png">
-  <link rel="stylesheet" href="./styles-v132.css">
+  <link rel="stylesheet" href="./styles-v140.css">
 
-  <style id="resident-critical-v132">
+  <style id="resident-critical-v140">
     .resident-chips {
       display: grid !important;
       grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
@@ -126,40 +126,27 @@
           <div id="sceneBadge" class="pill">dollhouse mode</div>
         </div>
 
-        <div id="world" class="world" aria-label="Lanternkeep living scene">
-          <div class="sky-stars" aria-hidden="true">
-            <span class="star star-1">✦</span>
-            <span class="star star-2">✦</span>
-            <span class="star star-3">✦</span>
-            <span class="star star-4">✦</span>
-          </div>
+        <div id="world" class="world living-scene" data-daypart="morning" aria-label="Lanternkeep living scene">
+          <img
+            id="keepSceneArt"
+            class="keep-scene-art"
+            src="./assets/scenes/keep_pond_morning.webp"
+            alt="Morning light over Lanternkeep and its pond"
+          >
 
-          <div id="bigLantern" class="big-lantern" aria-hidden="true">
-            <div class="lantern-handle"></div>
-            <div class="lantern-body">
-              <div class="lantern-glow"></div>
-              <div class="lantern-heart">♥</div>
-            </div>
-          </div>
+          <span id="sceneTimeLabel" class="scene-time-label">Morning light</span>
 
-          <button id="openGroveTree" class="pink-tree gratitude-tree-link" type="button" aria-label="Walk to the Gratitude Grove">
-            <span class="tree-trunk" aria-hidden="true"></span>
-            <span class="tree-leaf leaf-a" aria-hidden="true"></span>
-            <span class="tree-leaf leaf-b" aria-hidden="true"></span>
-            <span class="tree-leaf leaf-c" aria-hidden="true"></span>
-            <span class="tree-path-sign" aria-hidden="true">Grove</span>
+          <button id="openGroveTree" class="scene-grove-link" type="button" aria-label="Walk to the Gratitude Grove">
+            <span class="scene-grove-heart" aria-hidden="true">♡</span>
+            <span>
+              <strong id="groveSceneStage">Baby grove</strong>
+              <small id="groveSceneCount">0 leaves</small>
+            </span>
+            <span aria-hidden="true">→</span>
           </button>
 
-          <div id="gratitudeTreeNote" class="tree-note"></div>
-
-          <div class="path" aria-hidden="true"></div>
-          <div id="pawprints" class="pawprints" aria-hidden="true">
+          <div id="pawprints" class="pawprints scene-pawprints" aria-hidden="true">
             <span>🐾</span><span>🐾</span><span>🐾</span>
-          </div>
-
-          <div class="pond" aria-label="Mallow’s pond">
-            <div id="pondFill" class="pond-fill"></div>
-            <div class="pond-shine"></div>
           </div>
 
           <img id="daisyScene" class="scene-resident daisy-scene resident-image resident-scene-image" src="./resident_daisy_idle_v132.png" alt="Daisy">
@@ -168,7 +155,6 @@
           <img id="reggieScene" class="scene-resident reggie-scene resident-image resident-scene-image" src="./resident_reggie_idle_v132.png" alt="Reggie">
 
           <div id="sceneBubble" class="scene-bubble" role="status" aria-live="polite"></div>
-          <div class="world-ground" aria-hidden="true"></div>
         </div>
 
         <section class="resident-strip" aria-label="Resident reactions">
@@ -258,7 +244,7 @@
         </p>
       </section>
 
-      <section class="card gratitude-card">
+      <section id="gratitude" class="card gratitude-card">
         <div class="section-heading">
           <div>
             <h2>A small gratitude</h2>
@@ -486,6 +472,6 @@
     </label>
   </template>
 
-  <script src="./app-v132.js"></script>
+  <script src="./app-v140.js"></script>
 </body>
 </html>

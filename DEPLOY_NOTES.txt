@@ -1,0 +1,24 @@
+LANTERNKEEP 1.4.0 — UPLOAD NOTES
+
+1. Keep using the same GitHub repository and published Pages address.
+   This preserves the browser storage tied to that address.
+
+2. Upload every file and folder in this package to the repository root.
+   Keep these folders intact:
+   - assets/scenes
+   - assets/grove
+
+3. Existing older versioned files may remain in the repository. The new index.html uses the 1.4.0 files.
+
+4. After GitHub Pages finishes publishing, open Lanternkeep in Safari while online.
+   Fully close and reopen the Home Screen app once so the refreshed offline cache can take over.
+
+5. Test:
+   - the Keep displays the correct time-of-day scene;
+   - the Gratitude Grove opens from the scene and gratitude card;
+   - saved gratitude entries still appear;
+   - task checks, water, and resident reactions still work;
+   - the app reopens offline after one successful online load.
+
+Privacy:
+Private task names, gratitude text, settings, and progress remain in local browser storage on the device. They are not included in this package.
