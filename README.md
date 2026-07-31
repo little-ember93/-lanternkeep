@@ -1,72 +1,14 @@
-# Lanternkeep
+# Lanternkeep 1.4.1 — Flat Upload Repair
 
-Lanternkeep is a gentle, mobile-first daily tending app.
+This package contains the full Lanternkeep app with every required file at the
+repository root. It repairs missing Keep and Gratitude Grove artwork when GitHub's
+web uploader does not preserve nested folders.
 
-## Privacy
+## Included in this version
+- Automatic morning, afternoon, evening, and night Keep scenes
+- Illustrated Gratitude Grove with four growth stages
+- Existing dated gratitude leaves and monthly archive
+- Existing resident reactions, daily tasks, water tracking, and settings
+- Fresh v1.4.1 offline cache
 
-The files in this repository contain only the generic app shell and generic starter examples.
-
-Personal task names, gratitude text, settings, and daily completion data are stored in the browser on the device using local browser storage. They are not committed to this repository and are not sent to GitHub.
-
-Local browser storage is not encrypted. Anyone using an unlocked device may be able to see the app data, and clearing browser/site data can erase it. Lanternkeep includes a manual JSON export/import backup option.
-
-## Publish with GitHub Pages
-
-1. Upload every file in this folder to the root of a public GitHub repository.
-2. In the repository, open **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select the `main` branch and `/(root)`, then save.
-5. Wait for GitHub to show the published address.
-
-The app uses only HTML, CSS, and JavaScript. There are no paid services and no outside tracking libraries.
-
-
-## Version 1.1
-
-- Moves resident reactions into a compact row directly beneath the living scene.
-- Keeps the latest resident message visible for the rest of the day.
-- Adds a gentle date and daypart line.
-- Adds a fresh-day greeting with no countdown, streak, or overdue language.
-- Removes the larger resident profile section for now.
-
-
-## Version 1.2 — Gratitude Grove
-
-- Adds a separate Gratitude Grove page.
-- Saves one dated gratitude leaf per calendar day.
-- Updating today’s gratitude updates today’s existing leaf instead of creating duplicates.
-- Groups leaves into monthly branches and lets the user tap each leaf to reread it.
-- Missing days create no blank leaf, broken chain, warning, or penalty.
-- Includes Grove history in the existing local backup/export data.
-- Adds pathways to the Grove from the small tree and gratitude section.
-
-
-## Illustrated residents
-
-This version includes custom Pink Heart Land resident artwork files used in the main keep scene and compact resident row.
-
-
-## Lanternkeep 1.3.1
-
-Fixed the compact resident row and persistent reaction badge so they use the illustrated portrait assets. Also repaired and refreshed the offline cache list.
-
-
-## Lanternkeep 1.3.2 — Home Screen repair
-
-This update adds compact, app-sized resident art, hard sizing limits for the compact resident row, versioned CSS and JavaScript files, and a new service worker so iPhone Home Screen installations cannot combine stale and current layout files.
-
-## Lanternkeep 1.4.0 — The Living World
-
-- Replaces the placeholder keep with the illustrated Keep-and-Pond artwork.
-- Changes the home scene automatically for morning, afternoon, evening, and night.
-- Adds four illustrated Gratitude Grove growth stages based on the total number of saved gratitude leaves.
-- Keeps dated gratitude leaves tappable over the illustrated tree and preserves the monthly archive.
-- Preserves all existing on-device tasks, gratitude entries, settings, and daily progress under the same local storage key.
-- Adds a refreshed offline cache so the new artwork is available from the iPhone Home Screen after the update loads.
-
-### Grove stages
-
-- Baby grove: 0–4 leaves
-- Young grove: 5–14 leaves
-- Flourishing grove: 15–29 leaves
-- Grand grove: 30 or more leaves
+Read `DEPLOY_NOTES.txt` for the upload steps.

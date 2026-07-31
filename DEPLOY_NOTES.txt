@@ -1,24 +1,29 @@
-LANTERNKEEP 1.4.0 — UPLOAD NOTES
+LANTERNKEEP 1.4.1 — FLAT-UPLOAD REPAIR
 
-1. Keep using the same GitHub repository and published Pages address.
-   This preserves the browser storage tied to that address.
+Why this repair exists
+The 1.4.0 code looked for the new artwork inside assets/scenes and assets/grove.
+If GitHub uploaded those image files at the repository root instead, Safari could not
+find them and displayed a broken-image symbol. Version 1.4.1 keeps every file at the
+repository root so no folders need to be recreated.
 
-2. Upload every file and folder in this package to the repository root.
-   Keep these folders intact:
-   - assets/scenes
-   - assets/grove
+Upload steps
+1. Keep using the same GitHub repository and Pages address. This preserves the local
+   browser storage associated with that address.
+2. Open this package folder and select EVERY file inside it at once.
+3. Upload all selected files to the repository root using Add file > Upload files.
+4. Commit the changes. Old assets folders and older versioned files may remain; they
+   are no longer referenced by the app.
+5. Wait for GitHub Pages to finish publishing.
+6. Open Lanternkeep once in Safari while online. Fully close the Home Screen app and
+   reopen it. If the old broken scene appears once, refresh Safari once more; the new
+   v1.4.1 service worker uses a fresh cache name.
 
-3. Existing older versioned files may remain in the repository. The new index.html uses the 1.4.0 files.
+What to test
+- The afternoon scene appears around midday.
+- The Grove opens and displays its illustrated tree stage.
+- Saved gratitude leaves remain present.
+- Tasks, water, residents, settings, and daily progress still work.
 
-4. After GitHub Pages finishes publishing, open Lanternkeep in Safari while online.
-   Fully close and reopen the Home Screen app once so the refreshed offline cache can take over.
-
-5. Test:
-   - the Keep displays the correct time-of-day scene;
-   - the Gratitude Grove opens from the scene and gratitude card;
-   - saved gratitude entries still appear;
-   - task checks, water, and resident reactions still work;
-   - the app reopens offline after one successful online load.
-
-Privacy:
-Private task names, gratitude text, settings, and progress remain in local browser storage on the device. They are not included in this package.
+Privacy
+Task names, gratitude text, settings, water, and progress stay in local browser storage
+on the device. They are not contained in this package.
