@@ -1,4 +1,4 @@
-const CACHE_NAME = "lanternkeep-shell-v141";
+const CACHE_NAME = "lanternkeep-shell-v150";
 
 const APP_SHELL = [
   "./",
@@ -26,7 +26,18 @@ const APP_SHELL = [
   "./grove_stage_1_baby.webp",
   "./grove_stage_2_young.webp",
   "./grove_stage_3_flourishing.webp",
-  "./grove_stage_4_grand.webp"
+  "./grove_stage_4_grand.webp",
+  "./lanternkeep_title_v150.png",
+  "./gratitude_grove_title_v150.png",
+  "./gratitude_date_tag_v150.png",
+  "./gratitude_leaf_01_v150.png",
+  "./gratitude_leaf_02_v150.png",
+  "./gratitude_leaf_03_v150.png",
+  "./gratitude_leaf_04_v150.png",
+  "./gratitude_leaf_05_v150.png",
+  "./gratitude_leaf_06_v150.png",
+  "./gratitude_leaf_07_v150.png",
+  "./gratitude_leaf_08_v150.png"
 ];
 
 self.addEventListener("install", (event) => {

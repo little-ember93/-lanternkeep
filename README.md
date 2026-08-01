@@ -1,14 +1,12 @@
-# Lanternkeep 1.4.1 — Flat Upload Repair
+# Lanternkeep 1.5.0 — Grove & Glow
 
-This package contains the full Lanternkeep app with every required file at the
-repository root. It repairs missing Keep and Gratitude Grove artwork when GitHub's
-web uploader does not preserve nested folders.
+This package is the flat-upload build for Lanternkeep 1.5.0.
 
-## Included in this version
-- Automatic morning, afternoon, evening, and night Keep scenes
-- Illustrated Gratitude Grove with four growth stages
-- Existing dated gratitude leaves and monthly archive
-- Existing resident reactions, daily tasks, water tracking, and settings
-- Fresh v1.4.1 offline cache
+Included in this version:
+- home-page title art
+- Gratitude Grove title art
+- gratitude leaf art and dated tag art
+- Grove leaf entrance sway
+- glowy Reggie polish
 
-Read `DEPLOY_NOTES.txt` for the upload steps.
+Upload every file in this folder to the root of the same GitHub Pages repository used by Lanternkeep 1.4.1.

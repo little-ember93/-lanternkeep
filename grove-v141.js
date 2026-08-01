@@ -33,6 +33,17 @@
     }
   ];
 
+  const LEAF_ART = [
+    "./gratitude_leaf_01_v150.png",
+    "./gratitude_leaf_02_v150.png",
+    "./gratitude_leaf_03_v150.png",
+    "./gratitude_leaf_04_v150.png",
+    "./gratitude_leaf_05_v150.png",
+    "./gratitude_leaf_06_v150.png",
+    "./gratitude_leaf_07_v150.png",
+    "./gratitude_leaf_08_v150.png"
+  ];
+
   const state = loadState();
 
   const els = {
@@ -150,18 +161,37 @@
       button.classList.toggle("active", leaf.date === selectedLeafDate);
       button.classList.toggle("today", leaf.date === localDateKey());
       button.style.setProperty("--leaf-turn", `${leafTurn(index)}deg`);
+      button.style.setProperty("--leaf-delay", `${index * 90}ms`);
       button.setAttribute("aria-pressed", String(leaf.date === selectedLeafDate));
       button.setAttribute("aria-label", `${formatFullDate(leaf.date)}: ${leaf.text}`);
 
+      const artWrap = document.createElement("span");
+      artWrap.className = "grove-leaf-figure";
+
+      const art = document.createElement("img");
+      art.className = "grove-leaf-art";
+      art.src = LEAF_ART[index % LEAF_ART.length];
+      art.alt = "";
+      art.draggable = false;
+
+      const tag = document.createElement("span");
+      tag.className = "grove-leaf-tag";
+      tag.setAttribute("aria-hidden", "true");
+
       const dayNumber = document.createElement("strong");
+      dayNumber.className = "leaf-day";
       dayNumber.textContent = String(date.getDate());
 
       const weekday = document.createElement("small");
+      weekday.className = "leaf-month";
       weekday.textContent = new Intl.DateTimeFormat(undefined, {
-        weekday: "short"
+        month: "short"
       }).format(date);
 
-      button.append(dayNumber, weekday);
+      tag.append(dayNumber, weekday);
+      artWrap.append(art, tag);
+      button.appendChild(artWrap);
+
       button.addEventListener("click", () => {
         selectedLeafDate = leaf.date;
         renderLeaves(leaves);
