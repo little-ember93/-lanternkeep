@@ -1,6 +1,10 @@
-LANTERNKEEP 1.5.0 — GROVE & GLOW
+LANTERNKEEP 1.5.1 — FULL GROVE
 
 What is new
+- Gratitude leaves now use count-responsive branch placement from 1 through 31 leaves
+- Early months stay roomy; fuller months become progressively smaller and denser
+- Dated tags remain visible while the trunk, path, and lantern details keep breathing room
+- Monthly branches, on-device gratitude storage, and tree growth stages are unchanged
 - Lanternkeep title art on the main page
 - Gratitude Grove title art on the Grove page
 - Decorative gratitude leaves with dated hanging tags
@@ -15,6 +19,9 @@ Upload steps
 5. Open Lanternkeep once in regular Safari while online, then fully close and reopen the Home Screen app.
 
 What to test
+- Test branches with 1, 5, 11, 16, 25, 28, and 31 leaves at iPhone width.
+- Switch between two different months and confirm each branch shows its own leaves.
+- Save today's gratitude, open the Grove, then close and reopen Lanternkeep.
 - The new Lanternkeep title appears on the main page.
 - The Gratitude Grove title appears on the Grove page.
 - Leaves in the Grove show the decorative art and tiny date tags.

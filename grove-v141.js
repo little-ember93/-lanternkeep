@@ -44,6 +44,25 @@
     "./gratitude_leaf_08_v150.png"
   ];
 
+  // A hand-tuned branch map for the busiest possible month. Positions are
+  // percentages of the illustrated scene and deliberately leave the trunk,
+  // path and lantern areas breathing room. Smaller months use a spacious
+  // subset of these locations rather than filling a rigid row or grid.
+  const LEAF_POSITIONS = [
+    [22, 24], [48, 15], [74, 23], [34, 39], [64, 39],
+    [15, 45], [85, 45], [27, 56], [73, 56], [45, 29], [55, 51],
+    [12, 19], [88, 18], [24, 12], [66, 12], [38, 20], [59, 25],
+    [16, 32], [82, 33], [29, 31], [71, 32], [42, 43], [59, 42],
+    [20, 61], [82, 60], [35, 64], [67, 65], [10, 53], [91, 52],
+    [46, 61], [56, 67]
+  ];
+
+  const POSITION_ORDERS = {
+    roomy: [0, 2, 3, 4, 1, 5, 6, 7, 8, 9, 10],
+    medium: [0, 2, 3, 4, 1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    full: Array.from({ length: 31 }, (_, index) => index)
+  };
+
   const state = loadState();
 
   const els = {
@@ -153,6 +172,11 @@
   function renderLeaves(leaves) {
     els.leafCanopy.replaceChildren();
 
+    const density = leafDensity(leaves.length);
+    const order = POSITION_ORDERS[density];
+    els.leafCanopy.dataset.density = density;
+    els.leafCanopy.style.setProperty("--leaf-count", String(leaves.length));
+
     leaves.forEach((leaf, index) => {
       const date = parseLocalDate(leaf.date);
       const button = document.createElement("button");
@@ -162,6 +186,9 @@
       button.classList.toggle("today", leaf.date === localDateKey());
       button.style.setProperty("--leaf-turn", `${leafTurn(index)}deg`);
       button.style.setProperty("--leaf-delay", `${index * 90}ms`);
+      const position = LEAF_POSITIONS[order[index] ?? index];
+      button.style.setProperty("--leaf-x", `${position[0]}%`);
+      button.style.setProperty("--leaf-y", `${position[1]}%`);
       button.setAttribute("aria-pressed", String(leaf.date === selectedLeafDate));
       button.setAttribute("aria-label", `${formatFullDate(leaf.date)}: ${leaf.text}`);
 
@@ -355,6 +382,12 @@
 
   function leafTurn(index) {
     return [-8, 5, -3, 8, -6, 3, -10, 6][index % 8];
+  }
+
+  function leafDensity(count) {
+    if (count <= 11) return "roomy";
+    if (count <= 21) return "medium";
+    return "full";
   }
 
   function leafLabel(count) {

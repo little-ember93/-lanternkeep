@@ -1,12 +1,12 @@
-const CACHE_NAME = "lanternkeep-shell-v150";
+const CACHE_NAME = "lanternkeep-shell-v151";
 
 const APP_SHELL = [
   "./",
   "./index.html",
   "./grove.html",
-  "./styles-v141.css",
-  "./app-v141.js",
-  "./grove-v141.js",
+  "./styles-v141.css?v=151",
+  "./app-v141.js?v=151",
+  "./grove-v141.js?v=151",
   "./manifest.webmanifest",
   "./icon-192.png",
   "./icon-512.png",

@@ -2090,26 +2090,38 @@ footer button {
 }
 
 .leaf-canopy {
-  top: 12%;
-  right: 8%;
-  bottom: 16%;
-  left: 14%;
-  gap: clamp(8px, 1.6vw, 15px);
-  justify-content: flex-start;
+  inset: 0;
+  display: block;
+  pointer-events: none;
 }
 
 .grove-leaf-button {
-  width: clamp(54px, 13vw, 88px);
-  min-width: 54px;
-  min-height: clamp(74px, 18vw, 118px);
+  position: absolute;
+  top: var(--leaf-y);
+  left: var(--leaf-x);
+  width: clamp(58px, 14vw, 88px);
+  height: clamp(78px, 19vw, 118px);
+  min-width: 0;
+  min-height: 0;
   padding: 0;
   border: 0;
   background: transparent;
   box-shadow: none;
   backdrop-filter: none;
-  transform: rotate(var(--leaf-turn));
+  transform: translate(-50%, -50%) rotate(var(--leaf-turn));
   transition: transform 180ms ease, filter 180ms ease;
   animation: leaf-settle 1.7s ease-out var(--leaf-delay, 0ms) 1 both;
+  pointer-events: auto;
+}
+
+.leaf-canopy[data-density="medium"] .grove-leaf-button {
+  width: clamp(48px, 11.5vw, 72px);
+  height: clamp(65px, 15.5vw, 96px);
+}
+
+.leaf-canopy[data-density="full"] .grove-leaf-button {
+  width: clamp(40px, 9.6vw, 60px);
+  height: clamp(56px, 13.4vw, 82px);
 }
 
 .grove-leaf-button:hover,
@@ -2119,7 +2131,7 @@ footer button {
   color: inherit;
   border: 0;
   box-shadow: none;
-  transform: rotate(var(--leaf-turn)) translateY(-3px) scale(1.03);
+  transform: translate(-50%, -50%) rotate(var(--leaf-turn)) translateY(-3px) scale(1.06);
   filter: drop-shadow(0 6px 12px rgba(89, 59, 67, 0.18));
 }
 
@@ -2171,6 +2183,29 @@ footer button {
   font-weight: 800;
 }
 
+.leaf-canopy[data-density="medium"] .leaf-day {
+  font-size: clamp(0.6rem, 1.65vw, 0.82rem);
+}
+
+.leaf-canopy[data-density="medium"] .leaf-month {
+  font-size: clamp(0.44rem, 1.25vw, 0.62rem);
+}
+
+.leaf-canopy[data-density="full"] .grove-leaf-tag {
+  right: -8%;
+  bottom: -7%;
+  width: 62%;
+}
+
+.leaf-canopy[data-density="full"] .leaf-day {
+  font-size: clamp(0.58rem, 1.55vw, 0.76rem);
+}
+
+.leaf-canopy[data-density="full"] .leaf-month {
+  margin-top: 1px;
+  font-size: clamp(0.42rem, 1.15vw, 0.56rem);
+}
+
 .leaf-month {
   margin-top: 2px;
   font-size: clamp(0.46rem, 1.4vw, 0.68rem);
@@ -2188,9 +2223,9 @@ footer button {
 }
 
 @keyframes leaf-settle {
-  0% { opacity: 0; transform: rotate(calc(var(--leaf-turn) - 7deg)) translateY(-10px) scale(0.94); }
-  55% { opacity: 1; transform: rotate(calc(var(--leaf-turn) + 2deg)) translateY(2px) scale(1.01); }
-  100% { opacity: 1; transform: rotate(var(--leaf-turn)) translateY(0) scale(1); }
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(calc(var(--leaf-turn) - 7deg)) translateY(-10px) scale(0.94); }
+  55% { opacity: 1; transform: translate(-50%, -50%) rotate(calc(var(--leaf-turn) + 2deg)) translateY(2px) scale(1.01); }
+  100% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--leaf-turn)) translateY(0) scale(1); }
 }
 
 @keyframes leaf-sway {
@@ -2208,23 +2243,31 @@ footer button {
     width: min(100%, 100%);
   }
 
-  .leaf-canopy {
-    top: 11%;
-    right: 6%;
-    bottom: 14%;
-    left: 12%;
-    gap: 6px;
-  }
-
   .grove-leaf-button {
-    width: clamp(48px, 12vw, 72px);
-    min-width: 48px;
-    min-height: clamp(68px, 17vw, 102px);
+    width: clamp(54px, 15vw, 72px);
+    height: clamp(72px, 20vw, 98px);
   }
 
   .grove-leaf-tag {
     right: -11%;
     bottom: -8%;
     width: 56%;
+  }
+
+  .leaf-canopy[data-density="medium"] .grove-leaf-button {
+    width: clamp(45px, 12.5vw, 60px);
+    height: clamp(61px, 16.8vw, 80px);
+  }
+
+  .leaf-canopy[data-density="full"] .grove-leaf-button {
+    width: clamp(38px, 10.5vw, 50px);
+    height: clamp(52px, 14.4vw, 69px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grove-leaf-button,
+  .grove-leaf-art {
+    animation: none;
   }
 }
